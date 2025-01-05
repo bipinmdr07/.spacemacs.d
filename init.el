@@ -122,6 +122,10 @@ This function should only modify configuration layer settings."
      ;; WEB SERVICES
      github-copilot
 
+     ;; LLMs
+
+     (llm-client :variables llm-client-enable-ellama t)
+
      ;; THEME
      ;; mega-pack
 
