@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(typescript
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -52,6 +52,7 @@ This function should only modify configuration layer settings."
      ;; (templates :variables templates-private-directory "~/.spacemacs.d/templates")
 
      ;; EMACS
+     semantic
      (org
       org-enable-roam-support t
       org-enable-roam-protocol t
@@ -105,11 +106,15 @@ This function should only modify configuration layer settings."
      version-control
 
      ;; TOOLS
-     ;; debug
+     dap
+     debug
      ;; docker
      lsp
      prettier
      web-beautify
+     terraform
+
+     ;; LANGUAGE
      html
      (javascript :variables
                  javascript-backend 'lsp
@@ -118,9 +123,14 @@ This function should only modify configuration layer settings."
      yaml
      emacs-lisp
      markdown
+     json
+     yaml
+     typescript
 
      ;; WEB SERVICES
      github-copilot
+     eaf
+     whisper
 
      ;; LLMs
 
