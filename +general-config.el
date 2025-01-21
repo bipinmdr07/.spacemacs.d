@@ -30,12 +30,6 @@
   (org-roam-db-autosync-mode)
   )
 
-(use-package blamer
-  :ensure t
-  :config
-  (global-blamer-mode 1)
-  )
-
 ;; ------------------------------------------
 ;; Sort the codes visually selected by length of string in the line
 ;; ------------------------------------------

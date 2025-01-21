@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -102,14 +102,16 @@ This function should only modify configuration layer settings."
 
      ;; SOURCE CONTROLS
      (git :variables
-          git-magit-status-fullscreen t)
+          git-magit-status-fullscreen nil)
      version-control
 
      ;; TOOLS
      dap
-     debug
+     ;; debug
      ;; docker
-     lsp
+     (lsp :variables
+          lsp-disabled-clients '(typescript-language-server)
+          )
      prettier
      web-beautify
      terraform
@@ -117,9 +119,10 @@ This function should only modify configuration layer settings."
      ;; LANGUAGE
      html
      (javascript :variables
-                 javascript-backend 'lsp
+                 javascript-backend 'tide
                  javascript-fmt-tool 'prettier
                  javascript-fmt-on-save t)
+     tide
      yaml
      emacs-lisp
      markdown
@@ -129,7 +132,6 @@ This function should only modify configuration layer settings."
 
      ;; WEB SERVICES
      github-copilot
-     eaf
      whisper
 
      ;; LLMs
@@ -157,7 +159,6 @@ This function should only modify configuration layer settings."
    dotspacemacs-additional-packages '(
                                       org-roam
                                       deft
-                                      blamer
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -727,7 +728,7 @@ This function is called at the very end of Spacemacs initialization."
    ;; Your init file should contain only one such instance.
    ;; If there is more than one, they won't work right.
    '(package-selected-packages
-     '(typescript-mode ellama llm plz-event-source plz-media-type plz gptel unicode-emoticons blamer doom-themes nov esxml kv pdf-view-restore pdf-tools tablist copilot ligature rjsx-mode selectric-mode unicode-fonts ucs-utils font-utils persistent-soft pcache helm-spotify-plus multi spotify helm-lsp lsp-origami origami lsp-ui mwim unfill flyspell-correct-helm flyspell-correct deft org-roam json-mode json-navigator json-reformat json-snatcher company-web web-completion-data counsel-css counsel swiper ivy emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode add-node-modules-path dap-mode lsp-docker lsp-treemacs bui yaml lsp-mode markdown-mode ggtags impatient-mode htmlize import-js grizzl js-doc js2-refactor yasnippet multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify company flycheck yaml-mode ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe uuidgen undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-comint helm-ag google-translate golden-ratio flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-demos elisp-def editorconfig dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
+     '(csv-mode company-terraform eaf realgud test-simple loc-changes load-relative srefactor terraform-mode hcl-mode whisper typescript-mode ellama llm plz-event-source plz-media-type plz gptel unicode-emoticons blamer doom-themes nov esxml kv pdf-view-restore pdf-tools tablist copilot ligature rjsx-mode selectric-mode unicode-fonts ucs-utils font-utils persistent-soft pcache helm-spotify-plus multi spotify helm-lsp lsp-origami origami lsp-ui mwim unfill flyspell-correct-helm flyspell-correct deft org-roam json-mode json-navigator json-reformat json-snatcher company-web web-completion-data counsel-css counsel swiper ivy emmet-mode helm-css-scss pug-mode sass-mode haml-mode scss-mode slim-mode tagedit web-mode add-node-modules-path dap-mode lsp-docker lsp-treemacs bui yaml lsp-mode markdown-mode ggtags impatient-mode htmlize import-js grizzl js-doc js2-refactor yasnippet multiple-cursors livid-mode nodejs-repl npm-mode prettier-js skewer-mode js2-mode simple-httpd tern web-beautify company flycheck yaml-mode ws-butler writeroom-mode winum which-key wgrep vundo volatile-highlights vim-powerline vi-tilde-fringe uuidgen undo-fu-session undo-fu treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-comint helm-ag google-translate golden-ratio flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-demos elisp-def editorconfig dumb-jump drag-stuff dotenv-mode disable-mouse dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile all-the-icons aggressive-indent ace-link ace-jump-helm-line)))
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
    ;; If you edit it by hand, you could mess it up, so be careful.
